@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Geolocation, Position } from '@capacitor/geolocation';
 
 @Component({
@@ -12,12 +12,28 @@ export class Tab1Page {
   public previousCoordinates: Position;
   public currentCoordinates: Position;
   currentDistance = 0;
+  errorMessage: string;
+
+  @Input() dialogTitle!: string;
+  @ViewChild('appDialog', { static: true })
+  dialog!: ElementRef<HTMLDialogElement>;
+
+  closeDialog() {
+    this.dialog.nativeElement.close();
+  }
 
   async getCurrentPosition() {
     if (this.currentCoordinates) {
       this.previousCoordinates = this.currentCoordinates;
     }
-    this.currentCoordinates = await Geolocation.getCurrentPosition();
+
+    try {
+      this.currentCoordinates = await Geolocation.getCurrentPosition();
+    } catch (error) {
+      // @ts-ignore
+      this.errorMessage = error.message;
+      this.dialog.nativeElement.showModal();
+    }
 
     if (!this.previousCoordinates || !this.previousCoordinates) {
       return;
@@ -32,8 +48,8 @@ export class Tab1Page {
     const phi1 = (latA * Math.PI) / 180;
     const phi2 = (latB * Math.PI) / 180;
 
-    const deltaPhi = (latB - latA) * Math.PI / 180;
-    const deltaLambda = (lonB - lonA) * Math.PI / 180;
+    const deltaPhi = ((latB - latA) * Math.PI) / 180;
+    const deltaLambda = ((lonB - lonA) * Math.PI) / 180;
 
     const a =
       Math.sin(deltaPhi / 2) * Math.sin(deltaPhi / 2) +

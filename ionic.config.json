@@ -1,0 +1,7 @@
+{
+  "name": "running-to-go",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

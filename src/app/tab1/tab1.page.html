@@ -1,0 +1,16 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Tab 1
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <ion-button (click)="getCurrentPosition()">Get Current Position</ion-button>
+    <div class="distance">
+      Distance: {{currentDistance}}
+    </div>
+  </div>
+</ion-content>

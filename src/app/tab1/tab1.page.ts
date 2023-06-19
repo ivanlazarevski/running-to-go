@@ -14,8 +14,6 @@ export class Tab1Page {
   currentDistance = 0;
 
   async getCurrentPosition() {
-    console.log('Position acquired!');
-
     if (this.currentCoordinates) {
       this.previousCoordinates = this.currentCoordinates;
     }

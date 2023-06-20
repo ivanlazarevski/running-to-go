@@ -40,10 +40,10 @@ export class Tab1Page {
     }
 
     const R = 6371e3; // metres
-    const latA = Math.round((this.previousCoordinates.coords.latitude + Number.EPSILON) * 10000000) / 10000000
-    const latB = Math.round((this.currentCoordinates.coords.latitude + Number.EPSILON) * 10000000) / 10000000
-    const lonA = Math.round((this.previousCoordinates.coords.longitude + Number.EPSILON) * 10000000) / 10000000
-    const lonB = Math.round((this.currentCoordinates.coords.longitude + Number.EPSILON) * 10000000) / 10000000
+    const latA = Math.round((this.previousCoordinates.coords.latitude + Number.EPSILON) * 100000) / 100000
+    const latB = Math.round((this.currentCoordinates.coords.latitude + Number.EPSILON) * 100000) / 100000
+    const lonA = Math.round((this.previousCoordinates.coords.longitude + Number.EPSILON) * 100000) / 100000
+    const lonB = Math.round((this.currentCoordinates.coords.longitude + Number.EPSILON) * 100000) / 100000
 
     const phi1 = (latA * Math.PI) / 180;
     const phi2 = (latB * Math.PI) / 180;
